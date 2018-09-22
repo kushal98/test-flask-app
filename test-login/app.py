@@ -1,17 +1,17 @@
-from flask import Flask,request
+from flask import Flask,request,render_template
 from flaskext.mysql import MySQL
 
 mysql = MySQL()
 app = Flask(__name__)
 app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'Kushal@123'
-app.config['MYSQL_DATABASE_DB'] = 'EmpData'
+app.config['MYSQL_DATABASE_DB'] = {'EmpData','emp'}
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
 
 @app.route("/")
 def hello():
-    return "Welcome to python flask application"
+    render_template('index.htm')
 
 @app.route("/auth")
 def authenticate():
